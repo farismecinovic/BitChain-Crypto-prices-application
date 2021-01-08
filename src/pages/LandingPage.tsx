@@ -1,11 +1,13 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import axios from "axios";
 import { Content } from "antd/es/layout/layout";
-import { Button, Spin } from "antd";
+import { Button, message, Spin } from "antd";
 import DefaultLayout from "../components/Layout/DefaultLayout";
 import Title from "antd/es/typography/Title";
 import Search from "antd/es/input/Search";
 import Coin from "../components/Layout/Coin";
+import { useAtom } from "jotai";
+import { coinListAtom, favoriteCoinsAtom } from "../state/state";
 
 interface CryptoCoin {
   image: string;
@@ -16,8 +18,13 @@ interface CryptoCoin {
   id: string;
 }
 
+const success = () => {
+  message.success("Successfully added to favorites!", 1);
+};
+
 const LandingPage: FunctionComponent = () => {
-  const [coins, setCoins] = useState<Array<CryptoCoin>>([]);
+  const [coins, setCoins] = useAtom(coinListAtom);
+  const [favoriteCoins, setFavoriteCoins] = useAtom(favoriteCoinsAtom);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -38,6 +45,14 @@ const LandingPage: FunctionComponent = () => {
       setLoading(false);
     } catch (e) {
       console.warn(e);
+    }
+  };
+  const addFavoriteCoin = (coin: CryptoCoin) => {
+    if (favoriteCoins.includes(coin)) {
+      message.warning("Already added to favorites...", 1);
+    } else {
+      setFavoriteCoins([...favoriteCoins, coin]);
+      success();
     }
   };
 
@@ -98,6 +113,7 @@ const LandingPage: FunctionComponent = () => {
                   price={coin.current_price}
                   symbol={coin.symbol}
                   priceChange={coin.price_change_percentage_24h}
+                  favoriteClicked={() => addFavoriteCoin(coin)}
                 />
               </div>
             ))}

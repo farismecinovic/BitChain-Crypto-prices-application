@@ -33,3 +33,13 @@
     align-content: center;
     margin-top: 20%;
 }
+
+.avatar-item {
+    float: right;
+}
+
+.site-layout-content {
+    min-height: 280px;
+    padding: 24px;
+    background: #fff;
+}

@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Col, Divider, Row, Image, Typography } from "antd";
+import Icon, { HeartOutlined } from "@ant-design/icons";
 
 const { Text, Title } = Typography;
 
@@ -9,6 +10,7 @@ interface OwnProps {
   name: string;
   symbol: string;
   priceChange: number;
+  favoriteClicked: any;
 }
 
 type Props = OwnProps;
@@ -19,6 +21,7 @@ const Coin: FunctionComponent<Props> = ({
   name,
   symbol,
   priceChange,
+  favoriteClicked,
 }) => {
   return (
     <div style={{ width: "60%", margin: "0 auto" }}>
@@ -46,6 +49,12 @@ const Coin: FunctionComponent<Props> = ({
           ) : (
             <Text type="success">+{priceChange}%</Text>
           )}
+        </Col>
+        <Col span={6} order={5}>
+          <HeartOutlined
+            style={{ marginLeft: 15, cursor: "pointer" }}
+            onClick={() => favoriteClicked()}
+          />
         </Col>
       </Row>
     </div>
