@@ -103,30 +103,32 @@ const LandingPage: FunctionComponent = () => {
                 </Button>
               </div>
             </div>
-          </Content>
-          <div className="search-container">
-            <Search
-              placeholder="Search crypto.."
-              enterButton
-              style={{ marginBottom: 10 }}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="crypto-container">
-            {filteredCoins.map((coin) => (
-              <div key={coin.id}>
-                <Coin
-                  image={coin.image}
-                  name={coin.name}
-                  price={coin.current_price}
-                  symbol={coin.symbol}
-                  priceChange={coin.price_change_percentage_24h}
-                  favoriteClicked={() => addFavoriteCoin(coin)}
-                  showModal={() => showModal()}
+            <div className="crypto-container">
+              <div className="search-container">
+                <Search
+                  placeholder="Search crypto.."
+                  enterButton
+                  style={{ marginBottom: 10 }}
+                  onChange={handleChange}
                 />
               </div>
-            ))}
-          </div>
+              <div>
+                {filteredCoins.map((coin) => (
+                  <div key={coin.id}>
+                    <Coin
+                      image={coin.image}
+                      name={coin.name}
+                      price={coin.current_price}
+                      symbol={coin.symbol}
+                      priceChange={coin.price_change_percentage_24h}
+                      favoriteClicked={() => addFavoriteCoin(coin)}
+                      showModal={() => showModal()}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Content>
         </DefaultLayout>
       )}
     </React.Fragment>

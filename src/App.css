@@ -24,7 +24,8 @@
 .search-container{
     width: 400px;
     margin: 0 auto;
-    margin-top: 40px;
+    padding-top: 50px;
+
 }
 
 .loading {
@@ -42,4 +43,13 @@
     min-height: 280px;
     padding: 24px;
     background: #fff;
+}
+
+.crypto-container{
+    background-color: white;
+}
+
+.coin-container{
+    width: 60%;
+    margin: 0 auto;
 }

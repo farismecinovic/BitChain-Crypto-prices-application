@@ -26,7 +26,7 @@ const Coin: FunctionComponent<Props> = ({
   showModal,
 }) => {
   return (
-    <div style={{ width: "60%", margin: "0 auto" }}>
+    <div className="coin-container">
       <Divider orientation="left" style={{ color: "#1890FF" }}>
         {symbol.toUpperCase()}
       </Divider>
