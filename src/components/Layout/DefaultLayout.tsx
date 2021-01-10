@@ -8,16 +8,19 @@ const DefaultLayout: FunctionComponent = ({ children }) => {
     <Layout>
       <Navbar />
       {children}
-      <Footer
-        style={{
-          textAlign: "center",
-          backgroundColor: "#1890FF",
-          color: "#fff",
-          marginTop: 50,
-        }}
-      >
-        Bitchain Exchange ©2021
-      </Footer>
+      {/*<Footer*/}
+      {/*  style={{*/}
+      {/*    position: "absolute",*/}
+      {/*    bottom: 0,*/}
+      {/*    width: "100%",*/}
+      {/*    textAlign: "center",*/}
+      {/*    backgroundColor: "#1890FF",*/}
+      {/*    color: "#fff",*/}
+      {/*    marginTop: 50,*/}
+      {/*  }}*/}
+      {/*>*/}
+      {/*  Bitchain Exchange ©2021*/}
+      {/*</Footer>*/}
     </Layout>
   );
 };

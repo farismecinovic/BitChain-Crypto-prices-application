@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { message, PageHeader } from "antd";
 import DefaultLayout from "../components/Layout/DefaultLayout";
 import { Content } from "antd/es/layout/layout";
@@ -35,7 +35,7 @@ const ProfilePage: FunctionComponent = (props) => {
   return (
     <React.Fragment>
       <DefaultLayout>
-        <div style={{ height: "85vh" }}>
+        <div>
           <Content
             className="site-layout"
             style={{ padding: "0", marginTop: 64, height: "auto" }}
@@ -66,6 +66,7 @@ const ProfilePage: FunctionComponent = (props) => {
                             symbol={coin.symbol}
                             priceChange={coin.price_change_percentage_24h}
                             favoriteClicked={() => removeFavoriteCoin(coin)}
+                            showModal={() => console.log("Dsadas")}
                           />
                         </div>
                       ))}
