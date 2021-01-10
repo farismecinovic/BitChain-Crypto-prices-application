@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 const Navbar: FunctionComponent = () => {
   return (
     <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["0"]}>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
         <Menu.Item key="1">
           <NavLink to="/">Bitchain</NavLink>
         </Menu.Item>

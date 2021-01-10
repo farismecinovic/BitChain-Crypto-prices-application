@@ -2,9 +2,9 @@ import React, { FunctionComponent, useState, useEffect } from "react";
 import axios from "axios";
 import { Content } from "antd/es/layout/layout";
 import { Button, message, Spin } from "antd";
-import DefaultLayout from "../components/Layout/DefaultLayout";
 import Title from "antd/es/typography/Title";
 import Search from "antd/es/input/Search";
+import DefaultLayout from "../components/Layout/DefaultLayout";
 import Coin from "../components/Layout/Coin";
 import { useAtom } from "jotai";
 import { coinListAtom, favoriteCoinsAtom } from "../state/state";
@@ -18,15 +18,21 @@ interface CryptoCoin {
   id: string;
 }
 
-const success = () => {
-  message.success("Successfully added to favorites!", 1);
-};
-
 const LandingPage: FunctionComponent = () => {
   const [coins, setCoins] = useAtom(coinListAtom);
   const [favoriteCoins, setFavoriteCoins] = useAtom(favoriteCoinsAtom);
   const [search, setSearch] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [cryptoId, setCryptoId] = useState("");
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
 
   const handleChange = (event: any) => {
     setSearch(event.target.value);
@@ -49,10 +55,12 @@ const LandingPage: FunctionComponent = () => {
   };
   const addFavoriteCoin = (coin: CryptoCoin) => {
     if (favoriteCoins.includes(coin)) {
-      message.warning("Already added to favorites...", 1);
+      const filteredArray = favoriteCoins.filter((el) => el.name !== coin.name);
+      setFavoriteCoins(filteredArray);
+      message.error("Removed from favorites...", 1);
     } else {
       setFavoriteCoins([...favoriteCoins, coin]);
-      success();
+      message.success("Successfully added to favorites!", 1);
     }
   };
 
@@ -95,29 +103,32 @@ const LandingPage: FunctionComponent = () => {
                 </Button>
               </div>
             </div>
-          </Content>
-          <div className="search-container">
-            <Search
-              placeholder="Search crypto.."
-              enterButton
-              style={{ marginBottom: 10 }}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="crypto-container">
-            {filteredCoins.map((coin) => (
-              <div key={coin.id}>
-                <Coin
-                  image={coin.image}
-                  name={coin.name}
-                  price={coin.current_price}
-                  symbol={coin.symbol}
-                  priceChange={coin.price_change_percentage_24h}
-                  favoriteClicked={() => addFavoriteCoin(coin)}
+            <div className="crypto-container">
+              <div className="search-container">
+                <Search
+                  placeholder="Search crypto.."
+                  enterButton
+                  style={{ marginBottom: 10 }}
+                  onChange={handleChange}
                 />
               </div>
-            ))}
-          </div>
+              <div>
+                {filteredCoins.map((coin) => (
+                  <div key={coin.id}>
+                    <Coin
+                      image={coin.image}
+                      name={coin.name}
+                      price={coin.current_price}
+                      symbol={coin.symbol}
+                      priceChange={coin.price_change_percentage_24h}
+                      favoriteClicked={() => addFavoriteCoin(coin)}
+                      showModal={() => showModal()}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Content>
         </DefaultLayout>
       )}
     </React.Fragment>
