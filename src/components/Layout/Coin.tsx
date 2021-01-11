@@ -10,8 +10,8 @@ interface OwnProps {
   name: string;
   symbol: string;
   priceChange: number;
-  favoriteClicked: any;
-  showModal: any;
+  favoriteClicked: () => void;
+  calculateHandler: () => void;
 }
 
 type Props = OwnProps;
@@ -23,7 +23,7 @@ const Coin: FunctionComponent<Props> = ({
   symbol,
   priceChange,
   favoriteClicked,
-  showModal,
+  calculateHandler,
 }) => {
   return (
     <div className="coin-container">
@@ -62,7 +62,7 @@ const Coin: FunctionComponent<Props> = ({
         <Col span={4} order={6}>
           <CalculatorTwoTone
             style={{ cursor: "pointer" }}
-            onClick={() => showModal()}
+            onClick={() => calculateHandler()}
           />
         </Col>
       </Row>

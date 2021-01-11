@@ -7,6 +7,7 @@ import Title from "antd/es/typography/Title";
 import Coin from "../components/Layout/Coin";
 import { useAtom } from "jotai";
 import { favoriteCoinsAtom } from "../state/state";
+import { CalcModal } from "../components/Layout/CalcModal";
 
 interface CryptoCoin {
   image: string;
@@ -21,7 +22,19 @@ const warning = () => {
   message.warn("Coin removed from favorites!", 1);
 };
 
-const ProfilePage: FunctionComponent = (props) => {
+interface Props {
+  isModalVisible: boolean;
+  handleOk: () => void;
+  cryptoId: string;
+  openCryptoCalcModal: any;
+}
+
+const ProfilePage: FunctionComponent<Props> = ({
+  isModalVisible,
+  handleOk,
+  cryptoId,
+  openCryptoCalcModal,
+}) => {
   const history = useHistory();
   const [favoriteCoins, setFavoriteCoins] = useAtom(favoriteCoinsAtom);
 
@@ -45,6 +58,11 @@ const ProfilePage: FunctionComponent = (props) => {
               title="Profile"
               subTitle=""
             />
+            <CalcModal
+              visible={isModalVisible}
+              onOk={handleOk}
+              cryptoId={cryptoId}
+            />
           </Content>
           <div className="site-layout-content">
             <Title level={4}>Your favorite coins</Title>
@@ -66,7 +84,9 @@ const ProfilePage: FunctionComponent = (props) => {
                             symbol={coin.symbol}
                             priceChange={coin.price_change_percentage_24h}
                             favoriteClicked={() => removeFavoriteCoin(coin)}
-                            showModal={() => console.log("Dsadas")}
+                            calculateHandler={() =>
+                              openCryptoCalcModal(coin.id)
+                            }
                           />
                         </div>
                       ))}

@@ -1,55 +1,60 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 #components-layout-demo-fixed .logo {
-    width: 120px;
-    height: 31px;
-    margin: 16px 24px 16px 0;
-    float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  float: left;
 }
 .site-layout .site-layout-background {
-    background: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 0.4),
-        rgba(24,144,255, 0.6)
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.4),
+      rgba(24, 144, 255, 0.6)
     ),
     url("https://www.blockassets.io/wp-content/uploads/2017/03/Background-1356x430.jpg")
-    center no-repeat;
+      center no-repeat;
 
-    background-size: cover;
+  background-size: cover;
 }
-.hero{
-    text-align: center;
+.hero {
+  text-align: center;
 }
 
-.search-container{
-    width: 400px;
-    margin: 0 auto;
-    padding-top: 50px;
-
+.search-container {
+  width: 400px;
+  margin: 0 auto;
+  padding-top: 50px;
 }
 
 .loading {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 20%;
 }
 
 .avatar-item {
-    float: right;
+  float: right;
 }
 
 .site-layout-content {
-    min-height: 280px;
-    padding: 24px;
-    background: #fff;
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
 }
 
-.crypto-container{
-    background-color: white;
+.crypto-container {
+  background-color: white;
 }
 
-.coin-container{
-    width: 60%;
-    margin: 0 auto;
+.coin-container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.crypto-calculator-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
