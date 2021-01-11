@@ -8,6 +8,7 @@ import DefaultLayout from "../components/Layout/DefaultLayout";
 import Coin from "../components/Layout/Coin";
 import { useAtom } from "jotai";
 import { coinListAtom, favoriteCoinsAtom } from "../state/state";
+import { CalcModal } from "../components/Layout/CalcModal";
 
 interface CryptoCoin {
   image: string;
@@ -26,8 +27,9 @@ const LandingPage: FunctionComponent = () => {
   const [loading, setLoading] = useState(false);
   const [cryptoId, setCryptoId] = useState("");
 
-  const showModal = () => {
+  const openCryptoCalcModal = (id: string) => {
     setIsModalVisible(true);
+    setCryptoId(id);
   };
 
   const handleOk = () => {
@@ -80,6 +82,11 @@ const LandingPage: FunctionComponent = () => {
             className="site-layout"
             style={{ padding: "0", marginTop: 64, height: "auto" }}
           >
+            <CalcModal
+              visible={isModalVisible}
+              onOk={handleOk}
+              cryptoId={cryptoId}
+            />
             <div
               className="site-layout-background"
               style={{ padding: 24, minHeight: 380 }}
@@ -122,7 +129,7 @@ const LandingPage: FunctionComponent = () => {
                       symbol={coin.symbol}
                       priceChange={coin.price_change_percentage_24h}
                       favoriteClicked={() => addFavoriteCoin(coin)}
-                      showModal={() => showModal()}
+                      calculateHandler={() => openCryptoCalcModal(coin.id)}
                     />
                   </div>
                 ))}
