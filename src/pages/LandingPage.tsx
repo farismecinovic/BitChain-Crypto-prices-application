@@ -1,14 +1,12 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import axios from "axios";
-import { Content } from "antd/es/layout/layout";
-import { Button, message, Spin } from "antd";
-import Title from "antd/es/typography/Title";
-import Search from "antd/es/input/Search";
-import DefaultLayout from "../components/Layout/DefaultLayout";
+import { message, Spin } from "antd";
 import Coin from "../components/Layout/Coin";
 import { useAtom } from "jotai";
 import { coinListAtom, favoriteCoinsAtom } from "../state/state";
 import { CalcModal } from "../components/Layout/CalcModal";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Layout/Footer";
 
 interface CryptoCoin {
   image: string;
@@ -72,72 +70,57 @@ const LandingPage: FunctionComponent = () => {
 
   return (
     <React.Fragment>
-      {loading ? (
-        <div className="loading">
-          <Spin size="large" tip="Bitchain Loading..." />
-        </div>
-      ) : (
-        <DefaultLayout>
-          <Content
-            className="site-layout"
-            style={{ padding: "0", marginTop: 64, height: "auto" }}
-          >
-            <CalcModal
-              visible={isModalVisible}
-              onOk={handleOk}
-              cryptoId={cryptoId}
-            />
-            <div
-              className="site-layout-background"
-              style={{ padding: 24, minHeight: 380 }}
-            >
-              <div className="hero">
-                <Title
-                  style={{ color: "#fff", textAlign: "center", marginTop: 64 }}
-                >
-                  Buy & sell Crypto in minutes
-                </Title>
-                <Title level={4} style={{ color: "#dbdbdb" }}>
-                  Join the world's largest crypto exchange
-                </Title>
-
-                <Button
-                  type="primary"
-                  shape="round"
-                  style={{ marginTop: 40, outline: "5px" }}
-                >
-                  Start trading now!
-                </Button>
-              </div>
-            </div>
-            <div className="crypto-container">
-              <div className="search-container">
-                <Search
-                  placeholder="Search crypto.."
-                  enterButton
-                  style={{ marginBottom: 10 }}
-                  onChange={handleChange}
-                />
-              </div>
+      <div id="page-wrapper">
+        <Navbar />
+        <section id="intro" className="wrapper style2">
+          <div className="title">Cryptocurency list</div>
+          <div className="container">
+            {loading ? (
+              <Spin tip="Cryptocurency loading..." />
+            ) : (
               <div>
-                {filteredCoins.map((coin) => (
-                  <div key={coin.id}>
-                    <Coin
-                      image={coin.image}
-                      name={coin.name}
-                      price={coin.current_price}
-                      symbol={coin.symbol}
-                      priceChange={coin.price_change_percentage_24h}
-                      favoriteClicked={() => addFavoriteCoin(coin)}
-                      calculateHandler={() => openCryptoCalcModal(coin.id)}
-                    />
+                <form method="post" action="#">
+                  <div className="row gtr-50">
+                    <div
+                      className="col-8 col-12-small"
+                      style={{ margin: "0 auto" }}
+                    >
+                      <input
+                        onChange={handleChange}
+                        type="text"
+                        name="name"
+                        id="contact-name"
+                        placeholder="Search cryptos.."
+                      />
+                    </div>
                   </div>
-                ))}
+                </form>
+                <CalcModal
+                  visible={isModalVisible}
+                  onOk={handleOk}
+                  cryptoId={cryptoId}
+                />
+                <div>
+                  {filteredCoins.map((coin) => (
+                    <div key={coin.id}>
+                      <Coin
+                        image={coin.image}
+                        name={coin.name}
+                        price={coin.current_price}
+                        symbol={coin.symbol}
+                        priceChange={coin.price_change_percentage_24h}
+                        favoriteClicked={() => addFavoriteCoin(coin)}
+                        calculateHandler={() => openCryptoCalcModal(coin.id)}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </Content>
-        </DefaultLayout>
-      )}
+            )}
+          </div>
+        </section>
+      </div>
+      <Footer />
     </React.Fragment>
   );
 };

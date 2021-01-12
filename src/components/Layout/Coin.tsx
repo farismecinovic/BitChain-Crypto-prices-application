@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { Col, Divider, Row, Image, Typography } from "antd";
-import Icon, { CalculatorTwoTone, HeartTwoTone } from "@ant-design/icons";
+import { Col, Divider, Row, Image, Typography, Tooltip } from "antd";
+import { CalculatorTwoTone, HeartTwoTone } from "@ant-design/icons";
 
 const { Text, Title } = Typography;
 
@@ -53,17 +53,21 @@ const Coin: FunctionComponent<Props> = ({
           )}
         </Col>
         <Col span={4} order={5}>
-          <HeartTwoTone
-            twoToneColor="#eb2f96"
-            style={{ cursor: "pointer" }}
-            onClick={() => favoriteClicked()}
-          />
+          <Tooltip title="Add coin to favorites">
+            <HeartTwoTone
+              twoToneColor="#eb2f96"
+              style={{ cursor: "pointer" }}
+              onClick={() => favoriteClicked()}
+            />
+          </Tooltip>
         </Col>
         <Col span={4} order={6}>
-          <CalculatorTwoTone
-            style={{ cursor: "pointer" }}
-            onClick={() => calculateHandler()}
-          />
+          <Tooltip title="Convert coin value">
+            <CalculatorTwoTone
+              style={{ cursor: "pointer" }}
+              onClick={() => calculateHandler()}
+            />
+          </Tooltip>
         </Col>
       </Row>
     </div>
