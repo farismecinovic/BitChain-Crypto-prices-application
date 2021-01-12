@@ -73,7 +73,9 @@ const LandingPage: FunctionComponent = () => {
       <div id="page-wrapper">
         <Navbar />
         <section id="intro" className="wrapper style2">
-          <div className="title">Cryptocurency list</div>
+          <div className="title">
+            <h3>Cryptocurency list</h3>
+          </div>
           <div className="container">
             {loading ? (
               <Spin tip="Cryptocurency loading..." />
