@@ -112,7 +112,7 @@ const ProfilePage: FunctionComponent<Props> = ({
                           symbol={coin.symbol}
                           priceChange={coin.price_change_percentage_24h}
                           favoriteClicked={() => removeFavoriteCoin(coin)}
-                          calculateHandler={() => openCryptoCalcModal(coin.id)}
+                          calculateHandler={() => console.log("Soon")}
                         />
                       </div>
                     ))}
