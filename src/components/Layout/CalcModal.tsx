@@ -27,6 +27,7 @@ export const CalcModal: React.FC<Props> = ({ visible, onOk, cryptoId }) => {
   };
   useEffect(() => {
     getCryptoById();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cryptoId]);
 
   let calculate = (
