@@ -66,6 +66,7 @@ const LandingPage: FunctionComponent = () => {
 
   useEffect(() => {
     gettingCoins();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -11,13 +11,10 @@ const Footer: React.FC = () => {
           <p>
             {new Date().getFullYear()} - All right reserved &copy;
             <br />
-            <a href="https://www.github.com/farismecinovic" target="_blank">
+            <a href="#https://www.github.com/farismecinovic">
               <GithubFilled />
             </a>
-            <a
-              href="https://www.linkedin.com/in/faris-mecinovic-744b67193/"
-              target="_blank"
-            >
+            <a href="#https://www.linkedin.com/in/faris-mecinovic-744b67193/">
               <LinkedinFilled style={{ marginLeft: 20 }} />
             </a>
           </p>
